@@ -84,20 +84,11 @@ create: function (req, res, next) {
   // process the info from edit view
   update: function(req, res, next) {
 
-    if (req.session.User.admin) {
-      var userObj = {
-        name: req.param('name'),
-        title: req.param('title'),
-        email: req.param('email'),
-        admin: req.param('admin')
-      }
-    } else {
-      var userObj = {
-        name: req.param('name'),
-        title: req.param('title'),
-        email: req.param('email')
-      }
-    }
+    var userObj = {
+      name: req.param('name'),
+      title: req.param('title'),
+      email: req.param('email')
+    } 
 
     User.update(req.param('id'), userObj, function userUpdated(err) {
       if (err) {
@@ -106,4 +97,5 @@ create: function (req, res, next) {
 
       res.redirect('/user/show/' + req.param('id'));
     });
-  },
+  }
+}
